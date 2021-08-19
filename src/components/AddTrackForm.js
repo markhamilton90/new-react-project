@@ -5,7 +5,7 @@ class AddTrackForm extends React.Component {
     nameRef = React.createRef();
     artistRef = React.createRef();
 
-    createTrack = (e) => {
+    createTrack = e => {
         e.preventDefault();
         const track = {
             name: this.nameRef.current.value,

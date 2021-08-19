@@ -269,24 +269,6 @@ header.top h1 {
   -webkit-box-pack: center;
           justify-content: center;
 }
-header.top h1 .ofThe {
-  display: -webkit-box;
-  display: flex;
-  font-size: 3rem;
-  color: #f5a623;
-  -webkit-box-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-          align-items: center;
-  background: url("images/anchor.svg") center no-repeat;
-  background-size: cover;
-  padding: 0 1rem;
-}
-header.top h1 .ofThe .of {
-  padding-right: 2rem;
-  position: relative;
-  right: -0.5rem;
-}
 header.top h3 {
   margin: 0;
   font-size: 2rem;
@@ -316,6 +298,38 @@ header.top h3:after {
 header.top h3:after {
   top: auto;
   bottom: 7px;
+}
+.playlist-title .playlist-title-input {
+  display: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  text-align: center;
+  font-size: 3rem;
+  background: transparent;
+  border: none;
+  margin: 1.5rem auto 2rem;
+  outline: none;
+}
+.playlist-title .playlist-title-heading sup {
+  font-size: 0.5em;
+  font-style: italic;
+  position: relative;
+  left: 5px;
+  top: -13px;
+  visibility: hidden;
+}
+.playlist-title .playlist-title-heading:hover sup {
+  visibility: visible;
+}
+.playlist-title.editing {
+  background: #ff0;
+}
+.playlist-title.editing .playlist-title-input {
+  display: block;
+}
+.playlist-title.editing .playlist-title-heading {
+  display: none;
 }
 .track-list {
   max-width: 600px;
@@ -375,4 +389,30 @@ header.top h3:after {
   -webkit-transform: translateX(50%) rotate(-45deg);
           transform: translateX(50%) rotate(-45deg);
   background: #000;
+}
+.addTrackForm {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 0.75em;
+}
+.addTrackForm input[type="text"] {
+  width: 50%;
+  height: 40px;
+  line-height: 40px;
+  border: 2px solid #555;
+  padding: 0 10px;
+}
+.addTrackForm input[type="text"]:first-child {
+  border-right: none;
+}
+.addTrackForm button {
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #555;
+  border: none;
+  color: #fff;
+  padding: 0 10px;
 }

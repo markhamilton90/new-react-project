@@ -6,6 +6,7 @@ import sampleTracks from '../sample-tracks';
 class App extends React.Component {
 
     state = {
+        title: "Mark's Playlist",
         tracks: sampleTracks
     };
 
@@ -25,11 +26,17 @@ class App extends React.Component {
         });
     }
 
+    updateTitle = newTitle => {
+        this.setState({
+            title: newTitle
+        });
+    }
+
     render() {
         return (
             <div className="new-react-project">
                 <h1>Playlist</h1>
-                <Playlist title="Mark's Playlist" tracks={this.state.tracks} removeTrack={ this.removeTrack }/>
+                <Playlist title={ this.state.title } tracks={ this.state.tracks } editTitle={ this.editTitle } removeTrack={ this.removeTrack } updateTitle={ this.updateTitle }/>
                 <AddTrackForm addTrack={ this.addTrack } />
             </div>
         )

@@ -9,21 +9,6 @@ header.top
     line-height 0.7 // this font has a wacky baseline
     display flex
     justify-content: center;
-
-    // This is a bunch of goofy CSS to make the logo look decent
-    .ofThe
-      display flex
-      font-size 3rem
-      color orange
-      justify-content: center;
-      align-items: center;
-      background url('images/anchor.svg') center no-repeat;
-      background-size cover
-      padding 0 1rem
-      .of
-        padding-right 2rem
-        position relative
-        right -0.5rem
   h3
     margin 0
     font-size 2rem
@@ -50,11 +35,37 @@ header.top
       top auto
       bottom 7px
 
+.playlist-title
+  .playlist-title-input
+    display none
+    appearance none
+    text-align center
+    font-size 3rem
+    background transparent
+    border none
+    margin 1.5rem auto 2rem
+    outline none
+  .playlist-title-heading sup
+    font-size .5em
+    font-style italic
+    position relative
+    left 5px
+    top -13px
+    visibility hidden
+  .playlist-title-heading:hover sup
+    visibility visible
+  &.editing
+    background yellow
+    .playlist-title-input
+      display block
+    .playlist-title-heading
+      display none
+
 .track-list
-  max-width: 600px;
-  margin: 0 auto
+  max-width 600px;
+  margin 0 auto
   padding 30px
-  background: #eee
+  background #eee
   .track
     background #fff
     border 1px solid #dfdfdf
@@ -99,3 +110,25 @@ header.top
         right 50%
         transform translateX(50%) rotate(-45deg)
         background black
+.addTrackForm
+  max-width 600px;
+  margin 0 auto
+  font-size .75em
+  input[type="text"]
+    width 50%
+    height 40px
+    line-height 40px
+    border 2px solid #555
+    padding 0 10px
+    &:first-child
+      border-right none
+  button
+    width 100%
+    height 35px
+    line-height 35px
+    font-weight bold
+    text-transform uppercase
+    background #555
+    border none
+    color #fff
+    padding 0 10px
