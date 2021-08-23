@@ -11,18 +11,22 @@ class App extends React.Component {
     };
 
     addTrack = track => {
-        const tracks = { ...this.state.tracks };
-        tracks[`track${Date.now()}`] = track;
+        const tracks = [ ...this.state.tracks ];
+        track.id = `track${Date.now()}`;
+        tracks.push(track);
         this.setState({
             tracks: tracks
         });
     }
 
     removeTrack = key => {
-        const tracks = { ...this.state.tracks };
+        const tracks = [ ...this.state.tracks ];
         delete tracks[key];
+        const filteredTracks = tracks.filter( el => {
+            return el != null;
+        });
         this.setState({
-            tracks: tracks
+            tracks: filteredTracks
         });
     }
 
@@ -32,11 +36,24 @@ class App extends React.Component {
         });
     }
 
+    reorderTracks = (targetIndex, draggedIndex) => {
+        const tracks = [ ...this.state.tracks ];
+        const draggedIndexTrack = tracks[draggedIndex];
+        delete tracks[draggedIndex];
+        tracks.splice(targetIndex, 0, draggedIndexTrack);
+        const filteredTracks = tracks.filter( el => {
+            return el != null;
+        });
+        this.setState({
+            tracks: filteredTracks
+        });
+    }
+
     render() {
         return (
             <div className="new-react-project">
                 <h1>Playlist</h1>
-                <Playlist title={ this.state.title } tracks={ this.state.tracks } editTitle={ this.editTitle } removeTrack={ this.removeTrack } updateTitle={ this.updateTitle }/>
+                <Playlist title={ this.state.title } tracks={ this.state.tracks } editTitle={ this.editTitle } removeTrack={ this.removeTrack } updateTitle={ this.updateTitle } reorderTracks={ this.reorderTracks }/>
                 <AddTrackForm addTrack={ this.addTrack } />
             </div>
         )

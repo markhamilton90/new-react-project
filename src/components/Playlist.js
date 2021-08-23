@@ -30,8 +30,8 @@ class Playlist extends React.Component {
                     <input ref={ this.titleInputRef } className="playlist-title-input" type="text" defaultValue={ this.props.title } onBlur={ e => this.changeTitle(e) }/>
                 </div>
                 <div className="track-list">
-                    {Object.keys(this.props.tracks).map(key => (
-                        <Track key={key} index={key} details={this.props.tracks[key]} removeTrack={ this.props.removeTrack } />
+                    {Object.keys(this.props.tracks).map( (key, index) => (
+                        <Track key={this.props.tracks[key].id} index={index} details={this.props.tracks[key]} removeTrack={ this.props.removeTrack } reorderTracks={ this.props.reorderTracks }/>
                     ))}
                 </div>
             </div>
