@@ -40,7 +40,13 @@ class App extends React.Component {
         const tracks = [ ...this.state.tracks ];
         const draggedIndexTrack = tracks[draggedIndex];
         delete tracks[draggedIndex];
-        tracks.splice(targetIndex, 0, draggedIndexTrack);
+
+        if (targetIndex > draggedIndex) {
+            tracks.splice((targetIndex + 1), 0, draggedIndexTrack);
+        } else {
+            tracks.splice(targetIndex, 0, draggedIndexTrack);
+        }
+
         const filteredTracks = tracks.filter( el => {
             return el != null;
         });
