@@ -343,6 +343,9 @@ header.top h3:after {
   padding: 10px 15px 15px;
   position: relative;
 }
+.track-list .track.highlighted {
+  border: 1px solid #1ed760;
+}
 .track-list .track h3 {
   font-size: 1em;
   margin-bottom: 0.15em;
