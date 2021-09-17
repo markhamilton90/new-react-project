@@ -2,13 +2,23 @@ import React from 'react';
 import Playlist from './Playlist';
 import AddTrackForm from './AddTrackForm';
 import sampleTracks from '../sample-tracks';
+import base from '../base';
 
 class App extends React.Component {
 
     state = {
-        title: "Mark's Playlist",
-        tracks: sampleTracks
+        title: this.props.match.params.playlistId,
+        tracks: []
     };
+
+    componentDidMount() {
+        const { params } = this.props.match;
+        this.ref = base.syncState(`${params.playlistId}/tracks`, {
+            context: this,
+            state: 'tracks',
+            defaultValue: [],
+        });
+    }
 
     addTrack = track => {
         const tracks = [ ...this.state.tracks ];

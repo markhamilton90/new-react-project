@@ -73,6 +73,13 @@ header.top
     position relative
     &.highlighted
       border: 1px solid #1ed760
+    &:after
+      content ""
+      position absolute
+      width 100%
+      height 100%
+      top 0
+      left 0
     h3
       font-size 1em
       margin-bottom .15em
@@ -92,6 +99,7 @@ header.top
       transform translateY(-50%)
       padding 15px
       cursor pointer
+      z-index 10
       &:before
         content ""
         display block
