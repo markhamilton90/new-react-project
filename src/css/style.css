@@ -258,6 +258,30 @@ h3 {
 h4 {
   margin: 0 auto 1em;
 }
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+form {
+  font-size: 0.75em;
+}
+form input[type="text"] {
+  height: 40px;
+  line-height: 40px;
+  border: 2px solid #555;
+  padding: 0 10px;
+}
+form button {
+  font-size: 14px;
+  height: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #555;
+  border: none;
+  color: #fff;
+  padding: 0 10px;
+}
 header.top {
   text-align: center;
 }
@@ -299,8 +323,8 @@ header.top h3:after {
   top: auto;
   bottom: 7px;
 }
-.playlist-title .playlist-title-input {
-  display: none;
+.playlist-title {
+  width: 100%;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -311,42 +335,20 @@ header.top h3:after {
   margin: 1.5rem auto 2rem;
   outline: none;
 }
-.playlist-title .playlist-title-heading sup {
-  font-size: 0.5em;
-  font-style: italic;
-  position: relative;
-  left: 5px;
-  top: -13px;
-  visibility: hidden;
-}
-.playlist-title .playlist-title-heading:hover sup {
-  visibility: visible;
-}
-.playlist-title.editing {
-  background: #ff0;
-}
-.playlist-title.editing .playlist-title-input {
-  display: block;
-}
-.playlist-title.editing .playlist-title-heading {
-  display: none;
-}
-.track-list {
-  max-width: 600px;
-  margin: 0 auto;
+.tracklist {
   padding: 30px;
   background: #eee;
 }
-.track-list .track {
+.tracklist .track {
   background: #fff;
   border: 1px solid #dfdfdf;
   padding: 10px 15px 15px;
   position: relative;
 }
-.track-list .track.highlighted {
+.tracklist .track.highlighted {
   border: 1px solid #1ed760;
 }
-.track-list .track:after {
+.tracklist .track:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -354,20 +356,20 @@ header.top h3:after {
   top: 0;
   left: 0;
 }
-.track-list .track h3 {
+.tracklist .track h3 {
   font-size: 1em;
   margin-bottom: 0.15em;
 }
-.track-list .track h4 {
+.tracklist .track h4 {
   font-size: 0.65em;
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 0;
 }
-.track-list .track:hover .remove-track {
+.tracklist .track:hover .remove-track {
   display: block;
 }
-.track-list .track .remove-track {
+.tracklist .track .remove-track {
   display: none;
   position: absolute;
   right: 15px;
@@ -378,7 +380,7 @@ header.top h3:after {
   cursor: pointer;
   z-index: 10;
 }
-.track-list .track .remove-track:before {
+.tracklist .track .remove-track:before {
   content: "";
   display: block;
   width: 15px;
@@ -390,7 +392,7 @@ header.top h3:after {
           transform: translateX(50%) rotate(45deg);
   background: #000;
 }
-.track-list .track .remove-track:after {
+.tracklist .track .remove-track:after {
   content: "";
   display: block;
   width: 15px;
@@ -402,29 +404,40 @@ header.top h3:after {
           transform: translateX(50%) rotate(-45deg);
   background: #000;
 }
-.addTrackForm {
-  max-width: 600px;
-  margin: 0 auto;
-  font-size: 0.75em;
-}
 .addTrackForm input[type="text"] {
   width: 50%;
-  height: 40px;
-  line-height: 40px;
-  border: 2px solid #555;
-  padding: 0 10px;
 }
 .addTrackForm input[type="text"]:first-child {
   border-right: none;
 }
 .addTrackForm button {
   width: 100%;
-  height: 35px;
-  line-height: 35px;
-  font-weight: bold;
-  text-transform: uppercase;
-  background: #555;
-  border: none;
+}
+.addTrackForm .search-results {
+  background: #464646;
   color: #fff;
-  padding: 0 10px;
+  position: relative;
+  margin-top: -56px;
+}
+.addTrackForm .search-results ul {
+  list-style: none;
+  padding: 0;
+}
+.addTrackForm .search-results ul li {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.addTrackForm .search-results ul li:hover {
+  background: #2b2b2b;
+}
+.addPlaylistForm {
+  display: -webkit-box;
+  display: flex;
+}
+.addPlaylistForm input[type="text"] {
+  width: calc(100% - 200px);
+}
+.addPlaylistForm .button {
+  width: 100%;
+  max-width: 200px;
 }

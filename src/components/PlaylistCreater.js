@@ -1,4 +1,5 @@
 import React from 'react';
+import spotify from '../spotify';
 
 class PlaylistCreater extends React.Component {
 
@@ -12,15 +13,17 @@ class PlaylistCreater extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.createPlaylist}>
+            <div className="container">
                 <h2>Create a Playlist</h2>
-                <input
-                    ref={this.inputName}
-                    required
-                    type="text"
-                    placeholder="Enter playlist name..."/>
-                <button type="submit">Create Playlist</button>
-            </form>
+                <form onSubmit={this.createPlaylist} className="addPlaylistForm">
+                    <input
+                        ref={this.inputName}
+                        required
+                        type="text"
+                        placeholder="Enter playlist name..."/>
+                    <button type="submit">Create Playlist</button>
+                </form>
+            </div>
         );
     }
 }
