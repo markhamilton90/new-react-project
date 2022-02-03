@@ -430,6 +430,9 @@ header.top h3:after {
 .addTrackForm .search-results ul li:hover {
   background: #2b2b2b;
 }
+.addTrackForm .spotify-btn {
+  background: #1ed760;
+}
 .addPlaylistForm {
   display: -webkit-box;
   display: flex;

@@ -1,17 +1,19 @@
 import React from 'react';
 import SpotifyTrackSearchResults from './SpotifyTrackSearchResults';
+import Publish from './Publish';
 
 class AddTrackForm extends React.Component {
 
     state = {
-        name: '',
+        track: '',
         artist: '',
         selectedTrack: ''
     };
 
     nameRef = React.createRef();
     artistRef = React.createRef();
-    hiddenRef = React.createRef();
+
+    spotifyToken = 'BQBOZ40HMFm9b-mMhUiJ7x-d5EbmF3_WASQ5d4_9yFisWvqc9KZxm0obteyuLqiZRPbAwin_OkfU0U5kD2a5elCnHVRNMAz4w-g4k6MViRoNzodUd3fpfHpxg8GYaYqmc7iIh7-aobsS8YvpIX9DlGzc4Gdol_BULe9ABIvfTWGo7pG3Xk0';
 
     inputChange = e => {
         this.setState({
@@ -21,7 +23,7 @@ class AddTrackForm extends React.Component {
 
     clearFormState = e => {
         this.setState({
-            name: '',
+            track: '',
             artist: '',
             selectedTrack: ''
         });
@@ -32,7 +34,7 @@ class AddTrackForm extends React.Component {
         const spotifyArtist = e.currentTarget.dataset.artist;
         const spotifyTrackId = e.currentTarget.id;
         this.setState({
-            name: spotifyTrackName,
+            track: spotifyTrackName,
             artist: spotifyArtist,
             selectedTrack: spotifyTrackId
         });
@@ -59,17 +61,17 @@ class AddTrackForm extends React.Component {
         artist = artist.trim().split(' ').join('+');
         artist = !!artist ? `+artist:${artist}` : '';
 
-        const spotifyToken = 'BQBXW-pVnvsv21PBpeu8PAUyrAKkgS4oFa665bFMF_BTcorQOXjEKviXY-3KwHbvvFSkc7mJgFyrtgO4-my3Rz4gDK7Bp9r97Hqc4YIjahKLTcWdSpsWSzjaUroX7gBQnPcasDy6BJ6k8HKTsN4';
         const resource = `https://api.spotify.com/v1/search?q=${searchTerm + artist}&type=track&limit=5`;
         const settings = {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${spotifyToken}`
+                'Authorization': `Bearer ${this.spotifyToken}`
             }
         }
         fetch(resource, settings)
         .then(response => response.json())
         .then(result => {
+            console.log(result);
             if (result.error) {
                 this.props.handleError(result.error);
             }
@@ -85,13 +87,13 @@ class AddTrackForm extends React.Component {
             <form className="addTrackForm" onSubmit={ this.createTrack }>
                 <input
                     ref={ this.nameRef }
-                    name="name"
+                    name="track"
                     type="text"
                     placeholder="Track name..."
                     onKeyUp={ e => this.searchForTrack(this.nameRef.current.value, this.artistRef.current.value) }
                     onChange={ this.inputChange }
                     required
-                    value={ this.state.name }
+                    value={ this.state.track }
                     autoComplete="off" />
                 <input
                     ref={ this.artistRef }
@@ -103,7 +105,8 @@ class AddTrackForm extends React.Component {
                     value={ this.state.artist }
                     autoComplete="off" />
                 <button type="submit">Add Track</button>
-                <SpotifyTrackSearchResults data={this.props.data} selectTrackResult={ this.selectTrackResult }/>
+                <SpotifyTrackSearchResults data={ this.props.data } selectTrackResult={ this.selectTrackResult }/>
+                <Publish title={ this.props.title } tracks={ this.props.tracks }/>
             </form>
         )
     }

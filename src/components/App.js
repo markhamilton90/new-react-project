@@ -105,7 +105,7 @@ class App extends React.Component {
                 <div className="container">
                     <h1>Playlist</h1>
                     <Playlist title={ this.state.title } tracks={ this.state.tracks } removeTrack={ this.removeTrack } updateTitle={ this.updateTitle } reorderTracks={ this.reorderTracks }/>
-                    <AddTrackForm addTrack={ this.addTrack } data={this.state.spotifyData} handleError={ this.handleError } addItems={ this.addItems } resetSpotifyData={ this.resetSpotifyData }/>
+                    <AddTrackForm title={ this.state.title } tracks={ this.state.tracks } addTrack={ this.addTrack } data={this.state.spotifyData} handleError={ this.handleError } addItems={ this.addItems } resetSpotifyData={ this.resetSpotifyData }/>
                 </div>
             </div>
         )

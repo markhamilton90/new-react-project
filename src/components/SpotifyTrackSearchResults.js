@@ -16,7 +16,7 @@ class SpotifyTrackSearchResults extends React.Component {
                         { items.map( (key, index) => (
                             <li
                                 key={ items[index].id }
-                                id={ items[index].id }
+                                id={ items[index].uri }
                                 data-track={ items[index].name }
                                 data-artist={ items[index].artists[0].name }
                                 onClick={ this.props.selectTrackResult }>

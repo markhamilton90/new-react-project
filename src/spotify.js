@@ -1,5 +1,6 @@
 const clientID = 'b12793596ba64623ae4c47a3b3c95014';
 const redirectURI = 'http://localhost:3000/';
+const scope = 'playlist-modify-public';
 
 // localStorage.setItem(stateKey, state);
 // var scope = 'user-read-private user-read-email';
@@ -7,7 +8,7 @@ const redirectURI = 'http://localhost:3000/';
 var spotifyUrl = 'https://accounts.spotify.com/authorize';
 spotifyUrl += '?response_type=token';
 spotifyUrl += '&client_id=' + encodeURIComponent(clientID);
-// spotifyUrl += '&scope=' + encodeURIComponent(scope);
+spotifyUrl += '&scope=' + encodeURIComponent(scope);
 spotifyUrl += '&redirect_uri=' + encodeURIComponent(redirectURI);
 // spotifyUrl += '&state=' + encodeURIComponent(state);
 console.log(spotifyUrl);
