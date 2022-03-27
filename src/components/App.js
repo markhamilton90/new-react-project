@@ -1,6 +1,7 @@
 import React from 'react';
 import Playlist from './Playlist';
 import AddTrackForm from './AddTrackForm';
+import Publish from './Publish';
 import base from '../base';
 
 class App extends React.Component {
@@ -8,6 +9,7 @@ class App extends React.Component {
     state = {
         title: '',
         tracks: [],
+        published: null,
         spotifyData: {
             items: [],
             error: null
@@ -26,6 +28,11 @@ class App extends React.Component {
             context: this,
             state: 'title',
             defaultValue: this.props.match.params.playlistId,
+        });
+        base.syncState(`${params.playlistId}/published`, {
+            context: this,
+            state: 'published',
+            defaultValue: null,
         });
     }
 
@@ -54,6 +61,12 @@ class App extends React.Component {
         });
     }
 
+    updateTitle = newTitle => {
+        this.setState({
+            title: newTitle
+        });
+    }
+
     addTrack = track => {
         const tracks = [ ...this.state.tracks ];
         track.id = `track${Date.now()}`;
@@ -66,17 +79,9 @@ class App extends React.Component {
     removeTrack = key => {
         const tracks = [ ...this.state.tracks ];
         delete tracks[key];
-        const filteredTracks = tracks.filter( el => {
-            return el != null;
-        });
+        const filteredTracks = tracks.filter( el => el != null);
         this.setState({
             tracks: filteredTracks
-        });
-    }
-
-    updateTitle = newTitle => {
-        this.setState({
-            title: newTitle
         });
     }
 
@@ -91,11 +96,15 @@ class App extends React.Component {
             tracks.splice(targetIndex, 0, draggedIndexTrack);
         }
 
-        const filteredTracks = tracks.filter( el => {
-            return el != null;
-        });
+        const filteredTracks = tracks.filter( el => el != null);
         this.setState({
             tracks: filteredTracks
+        });
+    }
+
+    setPublishedState = (url) => {
+        this.setState({
+            published: url
         });
     }
 
@@ -106,6 +115,7 @@ class App extends React.Component {
                     <h1>Playlist</h1>
                     <Playlist title={ this.state.title } tracks={ this.state.tracks } removeTrack={ this.removeTrack } updateTitle={ this.updateTitle } reorderTracks={ this.reorderTracks }/>
                     <AddTrackForm title={ this.state.title } tracks={ this.state.tracks } addTrack={ this.addTrack } data={this.state.spotifyData} handleError={ this.handleError } addItems={ this.addItems } resetSpotifyData={ this.resetSpotifyData }/>
+                    <Publish title={ this.state.title } tracks={ this.state.tracks } published={ this.state.published } setPublishedState={ this.setPublishedState }/>
                 </div>
             </div>
         )

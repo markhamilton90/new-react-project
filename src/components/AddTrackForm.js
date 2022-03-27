@@ -1,6 +1,5 @@
 import React from 'react';
 import SpotifyTrackSearchResults from './SpotifyTrackSearchResults';
-import Publish from './Publish';
 
 class AddTrackForm extends React.Component {
 
@@ -13,7 +12,7 @@ class AddTrackForm extends React.Component {
     nameRef = React.createRef();
     artistRef = React.createRef();
 
-    spotifyToken = 'BQBOZ40HMFm9b-mMhUiJ7x-d5EbmF3_WASQ5d4_9yFisWvqc9KZxm0obteyuLqiZRPbAwin_OkfU0U5kD2a5elCnHVRNMAz4w-g4k6MViRoNzodUd3fpfHpxg8GYaYqmc7iIh7-aobsS8YvpIX9DlGzc4Gdol_BULe9ABIvfTWGo7pG3Xk0';
+    spotifyToken = 'BQC73_UaIr81IC14-0Rl0sWnACWqdX0IsH3OEYR5SqQ-Lm2Ska1ugYauxXi_R0ULA09ssizRMSCbhW2g4yvbYPk8J_Ay-abOPWeTpzjmX9GGM0rsPRMhdH612fMloy8CYRysX0yqiXizun5RvG0NMlv8ZI1ErGgVuSVZvbVHxIGIcCtL67M';
 
     inputChange = e => {
         this.setState({
@@ -106,7 +105,6 @@ class AddTrackForm extends React.Component {
                     autoComplete="off" />
                 <button type="submit">Add Track</button>
                 <SpotifyTrackSearchResults data={ this.props.data } selectTrackResult={ this.selectTrackResult }/>
-                <Publish title={ this.props.title } tracks={ this.props.tracks }/>
             </form>
         )
     }
